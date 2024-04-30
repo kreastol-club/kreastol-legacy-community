@@ -1,8 +1,13 @@
 <?php
 
-$server_name = "185.6.191.124";
-$username = "joshua";
-$password = "Kre@stolAda2003";
+$server_name = getenv('DB_HOST');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASS');
+
+if ($server_name === false || $username === false || $password === false) {
+    die('One or more required environment variables are not set.');
+}
+
 $database_name = "Kreastol";
 
 $conn = new mysqli($server_name, $username, $password);
