@@ -58,7 +58,7 @@ if(isset($_POST['login']))
 <head>
     <meta charset="UTF-8">
     <meta property = "og: image" content = "https://kreastol.club/Kreastol/img/Page-Logo.png"/>
-    <link rel="icon" href="https://kreastol.club/Kreastol/img/Title-Logo.png">  
+    <link rel="icon" href="img/Title-Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
   <title><?php echo lang_check(array("Login", "ログインする","Bejelentkezés", "Prijavite se"));?> </title>
