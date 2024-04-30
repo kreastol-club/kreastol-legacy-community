@@ -1,0 +1,25 @@
+#posts{	width:100%;display: flex;flex-direction: column;position: relative; padding: 2rem;}
+#posts ul{	align-self: center;	text-decoration: none;	list-style-type: none;	display: flex;}
+#posts ul li{	padding: 0 1rem;}
+#posts article{word-wrap: break-word;padding: 2rem;	position: relative;margin-bottom: 2rem;	}
+#posts h2{text-align: center;	color:var(--main);	padding-bottom: 0.5rem;	text-shadow: 2px 1px 1px #011;}
+#posts p{font-size: 18px;color:#E5F2EE;}
+#posts ul a{text-decoration: none; font-size: 18px;border: solid; border-radius:5px;padding: 10px; color: var(--main); background-color: transparent; vertical-align: -webkit-baseline-middle;}
+#posts h5{text-align: right; font-weight: lighter; color:var(--text2)}
+#posts hr {border: 0;height: 1px;background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--background1), rgba(0, 0, 0, 0));}
+#poster{text-align: end; text-shadow: 2px 2px 8px white; font-style: italic; text-align: center;}
+.details{margin-top: 30px;display:flex; justify-content: space-between;}
+.details p{white-space: normal; margin-right: 1rem; text-align: center;}
+#posts li{	align-self: center;	text-decoration: none;	list-style-type: none;	display: flex;}
+#posts a{text-decoration: none; font-size: 18px; vertical-align: -webkit-baseline-middle;}
+
+#register-b{
+
+    align-self: center;
+}
+@media screen and (max-width: 900px) {
+    #posts{padding: 2rem 0;}
+    #posts h5{color: var(--main)}
+    #posts hr {background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--main), rgba(0, 0, 0, 0));}
+
+}

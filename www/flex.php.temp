@@ -1,0 +1,303 @@
+<?php
+$error = NULL;
+session_start();
+include('config.php');
+header('Content-Type: text/html;charset=UTF-8');
+
+
+if(!isset($_SESSION['register'])){
+  $_SESSION['register'] = 0;
+}
+if(!isset($_SESSION['lang'])){
+  $_SESSION['lang']= "en";
+}
+//Language selection
+
+if(isset($_POST['eng']))
+  $_SESSION['lang']= "en";
+elseif(isset($_POST['jp']))
+  $_SESSION['lang']= "jp";
+elseif(isset($_POST['rs']))
+  $_SESSION['lang']= "rs";
+elseif(isset($_POST['hu']))
+  $_SESSION['lang']= "hu";
+
+if(isset($_SESSION['username']))
+{
+  header("location: main-page.php");
+}
+else
+{
+  //Clicking the register button
+  if(isset($_POST['register']))
+  {
+    $u = $_POST['username'];
+    $e = $_POST['email'];
+    $p = $_POST['password'];
+    $p2 = $_POST['password2'];
+
+    $fn = $_POST['fn'];
+    $ln = $_POST['ln'];
+    $bday = $_POST['bday'];
+    $gender = $_POST['gender'];
+ 
+    //$u = mb_convert_encoding($u); 
+    //echo $u;
+    //connecting to the database
+    
+    $fn = $mysqli->real_escape_string($fn);
+    $ln = $mysqli->real_escape_string($ln);
+    $u = $mysqli->real_escape_string($u);
+    $e = $mysqli->real_escape_string($e);
+    $p = $mysqli->real_escape_string($p);
+    $p2 = $mysqli->real_escape_string($p2);
+    $bday = $mysqli->real_escape_string($bday);
+    $gender = $mysqli->real_escape_string($gender);
+    //$u = mb_convert_encoding($u); 
+    //echo $u;
+    $query = "SELECT * FROM users WHERE email = '$e'";
+    //unique email testing
+    $result = mysqli_query($conn, $query);
+
+    //errors
+    //English starts
+    if(mysqli_num_rows($result) == 1)
+    {
+      $error .= "<p>".echo lang_check(array("This email is already taken!", "このメールはすでに届いています！!","Ez az email már foglalt!", "PRIJAVITE SE"))."</p>";
+      $error = "<p></p>";
+    }
+    else if(strlen($u) < 5)
+    {
+      $error = "<p>Username must be at least 5 character!</p>";
+    }
+    elseif(strlen($p) < 6){
+      $error = "<p>Password must be at least 6 character!</p>";
+    }
+    else if (!preg_match("#^[a-zA-Z0-9]+$#", $p))
+    {
+      $error = "<p>Please use only letters and numbers in your password!</p>";
+    }
+    elseif($p2 != $p)
+    {
+      $error .= "<p>Your passwords do not match</p>";
+    }
+    else
+    {
+      //password hashing
+      $options = array("cost"=>4);
+      $hashPassword = password_hash($p,PASSWORD_BCRYPT,$options);
+
+      //creating the verification
+      $vkey = PASSWORD_HASH(time().$u,PASSWORD_DEFAULT); 
+      /*if(function_exists('mysql_set_charset') ){
+        mysql_set_charset('utf8', $conn);
+      }else{
+        mysql_query("SET NAMES 'utf8'", $conn);
+      }*/
+      //inserting to database
+      $insert =$mysqli->query("INSERT INTO users(first_name,last_name,username,password,email,birthday,vkey,gender) VALUES('$fn','$ln','$u', '$hashPassword', '$e','$bday', '$vkey', '$gender')");
+      if($insert)
+      {
+        $to = $e;
+        $subject = "Email verification for Kreastol Club";
+        $message = "You have to verify your email address, if you want to continue with your login.\nClick here to <a href='https://community.kreastol.club/verify.php?vkey=$vkey'>Verify Your Account</a>!";
+        $headers = "From: noreply@mail.kreastol.club\r\n";
+        $headers .= "MIME-version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        mail($to,$subject,$message,$headers);
+          $_SESSION['register'] = 1;
+      }
+      else
+      {
+        echo $mysqli->error;
+      }
+    }
+  
+  
+  
+  
+  
+  
+    elseif($_SESSION['lang'] == "jp")
+  {
+
+      //jp starst
+      if(mysqli_num_rows($result) == 1)
+      {
+        $error = "<p></p>";
+      }
+      else if(strlen($u) < 5)
+      {
+        $error = "<p>ユーザー名は5文字以上である必要があります！</p>";
+      }
+      elseif(strlen($p) < 6){
+        $error = "<p>パスワードは6文字以上である必要があります！!</p>";
+      }
+      else if (!preg_match("#^[a-zA-Z0-9]+$#", $p))
+      {
+        $error = "<p>パスワードには文字と数字のみを使用してください。</p>";
+      }
+      elseif($p2 != $p)
+      {
+        $error .= "<p>パスワードが一致しません</p>";
+      }
+      else
+      {
+        //password hashing
+        $options = array("cost"=>4);
+        $hashPassword = password_hash($p,PASSWORD_BCRYPT,$options);
+
+        //creating the verification
+        $vkey = PASSWORD_HASH(time().$u,PASSWORD_DEFAULT); 
+
+        //inserting to database
+        $insert =$mysqli->query("INSERT INTO users(first_name,last_name,username,password,email,birthday,vkey,gender) VALUES('$fn','$ln','$u', '$hashPassword', '$e','$bday', '$vkey', '$gender')");
+        if($insert)
+        {
+          $to = $e;
+          $subject = "クレアストール・クラブのメールによる確認。";
+          $message = "メールアドレスを確認する必要があります。\nアカウントを<a href='https://community.kreastol.club/Community_Login/verify.php?vkey=$vkey'>確認する</a>には、ここをクリックしてください。";
+          $headers = "From: noreply@mail.kreastol.club\r\n";
+          $headers .= "MIME-version: 1.0" . "\r\n";
+          $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+          mail($to,$subject,$message,$headers);
+            $_SESSION['register'] = 1;
+        }
+        else
+        {
+          echo $mysqli->error;
+        }
+      }
+      //
+      //Jp finishes
+  }
+  elseif($_SESSION['lang'] == "hu")
+  {
+      //Hu starts
+      if(mysqli_num_rows($result) == 1)
+      {
+
+        $error = "<p>Ez az email már foglalt!</p>";
+      }
+      else if(strlen($u) < 5)
+      {
+        $error = "<p>A felhasználónév legalább 5 karakter kell, hogy legyen!</p>";
+      }
+      elseif(strlen($p) < 6){
+        $error = "<p><p>A jelszó legalább 5 karakter kell, hogy legyen!</p>!</p>";
+      }
+      else if (!preg_match("#^[a-zA-Z0-9]+$#", $p))
+      {
+        $error = "<p>Kérlek csak számokat és betűket használj a jelszóban!</p>";
+      }
+      elseif($p2 != $p)
+      {
+        $error .= "<p>Nem egyeznek a jelszavaid!</p>";
+      }
+      else
+      {
+        //password hashing
+        $options = array("cost"=>4);
+        $hashPassword = password_hash($p,PASSWORD_BCRYPT,$options);
+
+        //creating the verification
+        $vkey = PASSWORD_HASH(time().$u,PASSWORD_DEFAULT); 
+
+        //inserting to database
+        $insert =$mysqli->query("INSERT INTO users(first_name,last_name,username,password,email,birthday,vkey,gender) VALUES('$fn','$ln','$u', '$hashPassword', '$e','$bday', '$vkey', '$gender')");
+        if($insert)
+        {
+          $to = $e;
+          $subject = "Email verifikáció a Kreastol Klub oldalra!";
+          $message = "Meg kell erősítened az email címed a folytatáshoz\nKattintson ide a <a href='https://community.kreastol.club/Community_Login/verify.php?vkey=$vkey'>Verifikáláshoz</a>!";
+          $headers = "From: noreply@mail.kreastol.club\r\n";
+          $headers .= "MIME-version: 1.0" . "\r\n";
+          $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+          mail($to,$subject,$message,$headers);
+          $_SESSION['register'] = 0;
+        }
+        else
+        {
+          echo $mysqli->error;
+        }
+      }
+      //--------------------------------
+      //Hu Finisehs
+  }
+  elseif($_SESSION['lang'] == "rs")
+  {
+      //Rs starts
+      if(mysqli_num_rows($result) == 1)
+      {
+
+        $error = "<p>Ova email adresa već je zauzeta!</p>";
+      }
+      else if(strlen($u) < 5)
+      {
+        $error = "<p>Korisničko ime treba da sadrži najmanje 5 karaktera!</p>";
+      }
+      elseif(strlen($p) < 6){
+        $error = "<p>Lozinka treba da sadrži najmanje 5 karaktera!!</p>";
+      }
+      else if (!preg_match("#^[a-zA-Z0-9]+$#", $p))
+      {
+        $error = "<p>Samo slova i brojeve može da sadrži lozinka</p>";
+      }
+      elseif($p2 != $p)
+      {
+        $error .= "<p>Lozinke nisu isti!</p>";
+      }
+      else
+      {
+        //password hashing
+        $options = array("cost"=>4);
+        $hashPassword = password_hash($p,PASSWORD_BCRYPT,$options);
+
+        //creating the verification
+        $vkey = PASSWORD_HASH(time().$u,PASSWORD_DEFAULT); 
+
+        //inserting to database
+        $insert =$mysqli->query("INSERT INTO users(first_name,last_name,username,password,email,birthday,vkey,gender) VALUES('$fn','$ln','$u', '$hashPassword', '$e','$bday', '$vkey', '$gender')");
+        if($insert)
+        {
+          $to = $e;
+          $subject = "Email verifikacija za Kreastol Klub";
+          $message = "Trebate da verifikujete email adresu za naspasu.\nKliknite ovde za<a href='https://community.kreastol.club/Community_Login/verify.php?vkey=$vkey'>Verifikaciju</a>!";
+          $headers = "From: noreply@mail.kreastol.club\r\n";
+          $headers .= "MIME-version: 1.0" . "\r\n";
+          $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+          mail($to,$subject,$message,$headers);
+          $_SESSION['register'] = 1;
+        }
+        else
+        {
+          echo $mysqli->error;
+        }
+      }
+      //
+      //Rs finishes
+    }
+  }
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <?php
+  if($_SESSION['register'] == 0)
+  {
+    include('html/register-temp.php');
+  }
+  else
+  {
+    include('html/thankyou.php');
+    $_SESSION['register'] = 0;
+  }
+  
+  ?>
+</body>
+</html>

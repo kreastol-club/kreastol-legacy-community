@@ -1,0 +1,8 @@
+/*PASSWORD PART START*/
+  .profile{color:#d1e8e2;text-shadow: 2px 2px 4px rgba(63, 63, 63, 0.966);height: auto;width: 100%;position: relative;  }
+  .password-reset{    padding: 30px;    margin: 30px;    border: 2px dotted;    border-radius: 40px 50px 50px 0;    width: 50%;  }
+  form{    display: block;  }
+  * {margin: 20px 0;}
+  form .btn-primary{font-size: 18px;border-radius: 5px;padding: 10px;margin-right: 25px; background-color: #d1e8e2;color: #000; vertical-align: -webkit-baseline-middle;}
+  form .btn-link{text-decoration: none; font-size: 18px;border: solid; border-radius:5px;padding: 10px; color: #d1e8e2; background-color: transparent; vertical-align: -webkit-baseline-middle;}
+/*PASSWORD PART END*/

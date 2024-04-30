@@ -1,0 +1,120 @@
+
+
+*, *:after, *:before {  box-sizing: border-box;  -moz-box-sizing: border-box;}
+* {margin:0;padding:0;border:0 none;position: relative; outline: none;}
+body{overflow: hidden; height:100vh; background-color: var(--background1);}
+.sidebar{    display: none;
+  /* position: absolute; */
+  height: 15vh;
+  align-items: center;
+  /* top: 1.5rem; */
+  /* right: 1.5rem; */
+  /* padding: 1rem; */
+  justify-content: space-around; border-bottom: 4px solid var(--secondary2); box-shadow: 2px 2px 40px var(--main);}
+
+
+.header{  display: flex;  justify-content: space-between;  align-items: center;  position: relative;  width: 100%;  height: 6rem;  background-color: transparent;}
+ul{  margin: 0 1.5rem;  padding: 0.5rem 0;  border-radius: 30px;  list-style: none;  display: flex;  align-items: center;}
+ul li{  padding: 0 2rem;}
+.header a{  text-decoration: none;  color: var(--main);  font-size: 18px;}
+.header a{  width: 100%;  min-height: 200px;  line-height: 200px;  font-size: 3rem;  font-weight: normal;  text-align: center;}
+.header h2 {padding: 2rem;}
+.header button, .dropdown-content button{  border: none;  background-color: transparent; vertical-align: -webkit-baseline-middle;}
+.navbar li a{  line-height: 20px;  font-size: 18px;  font-weight: normal;  text-align: center;  color: var(--main);  margin: 3rem auto 0;}
+.navbar li > a {  text-decoration: none;  color: var(--main);  z-index: 1;}
+.navbar li > a:before {  content: "";  background: var(--main2);  position: absolute;  width: 130%;  height: 5px;  bottom: 0;  left: -15%;  border-radius: 5px;  transform: scaleX(0);  animation: 1s forwards no-hover-v linear;  animation-fill-mode: forwards;  z-index: -1;}
+.navbar li > a:hover:before,
+.navbar li > a:focus:before {  animation: .5s forwards hover-v linear;  animation-fill-mode: forwards;}
+@keyframes hover-v {  0% {transform: scaleX(0);height: 5px;}  45% {transform: scaleX(1.05);height: 5px;}  55% {height: 5px;}  100% {transform: scaleX(1.05);height: 30px;}}
+@keyframes no-hover-v {  0% {transform: scaleX(1.05);height: 30px;}  45% {height: 5px;}  55% {transform: scaleX(1.05); height: 5px;opacity: 1;}  100% {transform: scaleX(0);height: 5px;opacity: .02;}}
+.title{ font-size: 18px;  color: var(--main);  border-radius: 20px;}
+
+#login-b{border: solid; border-radius:5px;padding: 10px; color: var(--main); background-color: transparent; vertical-align: -webkit-baseline-middle;}
+#register-b{border-radius: 5px;padding: 10px; background-color: var(--main);color: var(--background1); vertical-align: -webkit-baseline-middle;}
+
+
+.container {  width: 80%;  height: 80vh;  border-radius: 10px;  border: solid;  border-width: 10px;  position: relative;  border-color: var(--main);  margin: auto;  box-shadow: 2px 2px 40px var(--main);  background-color: var(--main2); overflow-y: auto;}
+.hamburger-icon {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 10;
+}
+.hamburger-icon img{
+  filter: invert(98%) sepia(9%) saturate(945%) hue-rotate(151deg) brightness(95%) contrast(89%);
+  width: 35px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {  position: relative;  display: inline-block; 	margin: 0 2rem;}
+.dropdown #settings-img{vertical-align: middle; filter: invert(98%) sepia(9%) saturate(945%) hue-rotate(151deg) brightness(95%) contrast(89%);z-index: 10;}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {  position: relative;  display: inline-block;}
+.dropdown-content ul{display: contents;}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content { left:-5rem; display: none;  position: absolute; border-radius: 0 0 20px 20px; padding: 1rem; background-color: var(--background1);  opacity: 0.9;  min-width: 70px;  box-shadow: var(--main2);  z-index: 1;}
+.dropdown-content form{display: block;}
+.dropdown-content form ul li button img{ width: 30px;}
+.dropdown-content form ul li { margin: 1rem 0; background-color: transparent; }
+.dropdown:hover .dropdown-content { animation: dropdown 1s; display: flex;}
+
+#colors{
+    display: flex;
+    flex-direction: column;
+}
+#colors li{
+
+    width: 20px;
+    height: 20px;
+    margin-top: 0.5rem;
+    border-radius: 30px;
+    z-index: 9999;
+}
+
+        /*--------------------- COLOR SELECT----------------------*/
+
+.default-color{background-color: #61fcf1}
+.blue{background-color: #1947ff
+}
+.purple{background-color: #9b05ff
+}
+.red-color{background-color: #ff142d
+}
+.yellow{background-color: #ebff23
+}
+.orange{background-color: #ff7a0d
+}
+
+         /*--------------------- COLOR SELECT----------------------*/
+@keyframes dropdown{
+  0%{opacity: 0;}
+  100%{opacity: 0.9;}
+}
+/* Change the background color of the dropdown button when the dropdown content is shown 
+.dropdown:hover .dropbtn {
+}*/
+@media screen and (max-width: 900px) {
+  .desktop-dropdown{display: none;}
+  .sidebar{display: flex; padding: 1.5rem;}
+  .header{
+      flex-direction: column;
+    top: 0;
+    height: 100vh;
+    left: -900px;
+    justify-content: center;
+    position: absolute;
+    box-shadow: 2px 2px 40px var(--main);
+    background-color: var(--background2);		width: 100%;		height: 100vh;}
+  .header .title{display: none;}
+  .header ul{flex-direction: column; margin: 1rem;}
+  .header ul li{ margin: 1rem;}
+  .navbar ul {flex-direction: column; margin: 1rem;}
+  .navbar ul li{ margin: 1rem;}
+  .container{height: 85vh;border-radius: 0; width:auto; border: none;  border-width: 0; background-color: transparent;box-shadow:none; }
+
+
+}
+
+

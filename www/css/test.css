@@ -1,0 +1,54 @@
+
+
+    /*HEADER PART*/
+
+*, *:after, *:before {  box-sizing: border-box;  -moz-box-sizing: border-box;}
+* {margin:0;padding:0;border:0 none;position: relative; outline: none;}
+body{ height:100vh; background-color: #000;background-image: radial-gradient(circle,  rgba(20, 234, 238, 0.4) 1%,rgba(17, 100, 102, 0.4) 90%);}
+header{  display: flex;  justify-content: space-between;  align-items: center;  position: relative;  width: 100%;  height: 6rem;  background-color: transparent;}
+.navbar li a{  line-height: 20px;  font-size: 18px;  font-weight: normal;  text-align: center;  color: #d1e8e2;  margin: 3rem auto 0;}
+.navbar li > a {  text-decoration: none;  color: #d1e8e2;  z-index: 1;}
+.navbar li > a:before {  content: "";  background: #9c9c9c;  position: absolute;  width: 130%;  height: 5px;  bottom: 0;  left: -15%;  border-radius: 5px;  transform: scaleX(0);  animation: 1.4s forwards no-hover-v linear;  animation-fill-mode: forwards;  z-index: -1;}
+.navbar li > a:hover:before,
+.navbar li > a:focus:before {  animation: .5s forwards hover-v linear;  animation-fill-mode: forwards;}
+@keyframes hover-v {  0% {transform: scaleX(0);height: 5px;}  45% {transform: scaleX(1.05);height: 5px;}  55% {height: 5px;}  100% {transform: scaleX(1.05);height: 30px;}}
+@keyframes no-hover-v {  0% {transform: scaleX(1.05);height: 30px;}  45% {height: 5px;}  55% {transform: scaleX(1.05); height: 5px;opacity: 1;}  100% {transform: scaleX(0);height: 5px;opacity: .02;}}
+.title{  font-size: 18px;  color: #d1e8e2;  border-radius: 20px;}
+header a{  text-decoration: none;  color: #d1e8e2;  font-size: 18px;}
+header a {  width: 100%;  min-height: 200px;  line-height: 200px;  font-size: 3rem;  font-weight: normal;  text-align: center;}
+header h2 {padding: 2rem;}
+header button{  border: none;  background-color: transparent; vertical-align: -webkit-baseline-middle;}
+#login-b{border: solid; border-radius:5px;padding: 10px; color: #d1e8e2; background-color: transparent; vertical-align: -webkit-baseline-middle;}
+#register-b{border-radius: 5px;padding: 10px; background-color: #d1e8e2;color: #000; vertical-align: -webkit-baseline-middle;}
+header ul{  margin: 0 1.5rem;  padding: 0.5rem 0;  border-radius: 30px;  list-style: none;  display: flex;  align-items: center;}
+header ul li{  padding: 0 2rem;}
+
+.container {  width: 80%;  height: 80vh;  border-radius: 10px;  border: solid;  border-width: 10px;  position: relative;  border-color: #d1e8e2;  margin: auto;  box-shadow: 2px 2px 40px rgba(202, 255, 241, 0.575);  background-color: rgba(209, 232, 226, 0.452);}
+
+
+    /*HEADER PART ENDS*/
+    /*-----------------/*
+    /*profile part*/
+
+
+.profile{
+  color:#d1e8e2;
+  text-shadow: 2px 2px 4px rgba(63, 63, 63, 0.966);
+  height: auto;
+  width: 100%;
+  position: relative;
+}
+.password-reset{
+  padding: 30px;
+  margin: 30px;
+  border: 2px dotted;
+  border-radius: 40px 50px 50px 0;
+  width: 50%;
+}
+.password-reset form{
+  display: block;
+}
+
+.password-reset form * {margin: 20px 0;}
+.password-reset form .btn-primary{font-size: 18px;border-radius: 5px;padding: 10px;margin-right: 25px; background-color: #d1e8e2;color: #000; vertical-align: -webkit-baseline-middle;}
+.password-reset form .btn-link{text-decoration: none; font-size: 18px;border: solid; border-radius:5px;padding: 10px; color: #d1e8e2; background-color: transparent; vertical-align: -webkit-baseline-middle;}

@@ -1,0 +1,40 @@
+*{margin: 0; padding: 0;}
+
+.gallery-container{
+    padding: 1.5rem;
+   display: flex;
+   width: 100%;
+   flex-direction: column;
+}
+.img-grid{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.img-container{
+    margin:1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img{
+    width:80%;
+}
+a{text-align: -webkit-center;}
+
+
+@media screen and (max-width: 900px) {
+    h2{color: #d1e8e2; text-shadow: 2px 2px 7px #011;}
+    .img-grid{
+    grid-template-columns: repeat(1,1fr);
+    }
+}
+
+
+
+
+
+
+
+
+

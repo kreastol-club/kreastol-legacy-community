@@ -1,0 +1,33 @@
+.calendar{
+    display: flex;
+    width: 100%;
+    height: 60vh;
+    padding: 0;
+    border-radius: 10px;
+}
+
+iframe{
+    border: 0;
+    width:100%;
+    height:80vh;
+    
+    margin: auto;
+}
+@media screen and (max-width: 900px) {
+    .calendar{
+        padding: 0; 
+        height: 100vh;
+    }
+    iframe{
+        height:120vh;
+    }
+    .container{height:85vh;}
+    .desktop-dropdown{display: none;}
+    .sidebar{display: flex; padding: 1.5rem;}
+    .header .title{display: none;}
+    .header ul{flex-direction: column; margin: 1rem;}
+    .header ul li{ margin: 1rem;}
+    .navbar ul {flex-direction: column; margin: 1rem;}
+    .navbar ul li{ margin: 1rem;}
+    .container{height: 85vh;border-radius: 0; width:auto; border: none;  border-width: 0; background-color: transparent;box-shadow:none; }
+}

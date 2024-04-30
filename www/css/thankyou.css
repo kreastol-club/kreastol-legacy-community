@@ -1,0 +1,101 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: var(--background1);
+}
+h3{
+    margin: 15px;
+    font-weight: bold;
+    font-size: 40px;
+    color: var(--background1);
+}
+h4{
+    margin: 15px;
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--background1);
+}
+p{
+    font-size: 19px;
+    margin: 20px;
+    color: var(--background1);
+    font-weight: bold;
+}
+.container{
+    padding: 1.5rem;
+    align-items: center;
+    text-align: center;
+    height: 590px;
+    width: 500px;
+    position: relative;
+    margin: 2% auto;
+    background-color: var(--main);
+    border-radius: 20px;
+    overflow: hidden;
+}
+#mail{
+    margin: 20px;
+    width: 200px;
+    filter: invert(14%) sepia(22%) saturate(6709%) hue-rotate(197deg) brightness(97%) contrast(96%);
+}
+.mailbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.mailbox a img{
+    width: 70px;
+}
+#outlook{
+    width: 180px;
+}
+#yahoo{
+    width: 150px;
+}
+#login{
+
+    width: 150px;
+    height: 35px;
+    margin: 20px;
+    background: var(--background1);
+    outline:none;
+    border: none;
+    border-radius: 30px;
+    position: relative;
+    color: var(--main);
+    font-weight: bold;
+    font-size:12px;
+}
+ #login:hover{
+    background: var(--background2);
+    border-radius: 20px;
+}
+@media screen and (max-width: 900px) {
+    .container{
+        width: 290px;
+        height: 560px;
+    }
+    .mailbox{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .mailbox a{
+        margin-top: 25px;
+    }
+    #mail{
+        width: 120px;
+        margin: 10px;
+    }
+    h3{
+        font-size: 25px;
+    }
+    h4{
+        font-size: 20px;
+    }
+
+}
