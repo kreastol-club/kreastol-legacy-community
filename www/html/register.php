@@ -1,7 +1,7 @@
 
 <head>
   <meta property = "og: image" content = 'https://kreastol.club/Kreastol/img/Page-Logo.png'/>
-  <link rel="icon" href='https://kreastol.club/Kreastol/img/Title-Logo.png'> 
+  <link rel="icon" href='img/Title-Logo.png'>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/register.css" type=text/css>
