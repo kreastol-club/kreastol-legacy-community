@@ -52,7 +52,7 @@ $query->bind_result($post_id, $title, $body, $category, $date, $username);
         <p><?php echo $body?></p>
         <div class="details">
             <p id="poster"><?php echo lang_check(array("Posted by: $username",$username."による投稿", "Posztolta: $username", "Postovao/la: $username"));?></p>
-            <p><?php echo posts . phplang_check(array("Category:", "カテゴリー: ", "Kategória: ", "Kategorija: ")) . $category ?></p>
+            <p><?php echo lang_check(array("Category:", "カテゴリー: ", "Kategória: ", "Kategorija: ")) . $category ?></p>
         </div>
         <h5><?php echo $date?></h5>
         <hr>
